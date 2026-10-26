@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if contacts %}
+    <ul>
+      {% for contact in contacts %}
+        <li>
+          {{ contact[1] }} - {{ contact[2] }} - {{ contact[3] }}
+          <a href="{{ url_for('edit', id=contact[0]) }}">Edit</a>
+          <form method="POST" action="{{ url_for('delete', id=contact[0]) }}" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No contacts yet.</p>
+  {% endif %}
+{% endblock %}

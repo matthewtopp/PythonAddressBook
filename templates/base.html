@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Address Book</title>
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service-worker.js');
+    }
+  </script>
+</head>
+<body>
+  <h1>Personal Address Book</h1>
+  <a href="{{ url_for('index') }}">Home</a> | <a href="{{ url_for('add') }}">Add Contact</a>
+  <hr>
+  {% block content %} {% endblock %}
+</body>
+</html>

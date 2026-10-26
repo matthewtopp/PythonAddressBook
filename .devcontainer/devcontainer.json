@@ -1,0 +1,12 @@
+{
+  "name": "Personal Address Book PWA",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "postCreateCommand": "./post-create.sh",
+  "forwardPorts": [5000],
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  }
+}
