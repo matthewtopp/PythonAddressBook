@@ -13,6 +13,8 @@ def init_db():
             name TEXT NOT NULL,
             phone TEXT,
             email TEXT
+            address TEXT,
+            birthday TEXT
         )
     ''')
     conn.commit()
@@ -33,10 +35,13 @@ def add():
         name = request.form['name']
         phone = request.form['phone']
         email = request.form['email']
+        address = request.form['address']
+        birthday = request.form['birthday']
+
         conn = sqlite3.connect(DB_NAME)
         c = conn.cursor()
-        c.execute('INSERT INTO contacts (name, phone, email) VALUES (?, ?, ?)',
-                  (name, phone, email))
+        c.execute('INSERT INTO contacts (name, phone, email, address, birthday) VALUES (?, ?, ?, ?, ?)',
+                  (name, phone, email, address, birthday))
         conn.commit()
         conn.close()
         return redirect(url_for('index'))
@@ -50,8 +55,10 @@ def edit(id):
         name = request.form['name']
         phone = request.form['phone']
         email = request.form['email']
-        c.execute('UPDATE contacts SET name=?, phone=?, email=? WHERE id=?',
-                  (name, phone, email, id))
+        address = request.form['address']
+        birthday = request.form['birthday']
+        c.execute('UPDATE contacts SET name=?, phone=?, email=?, address=?, birthday=? WHERE id=?',
+                  (name, phone, email, address, birthday, id))
         conn.commit()
         conn.close()
         return redirect(url_for('index'))
